@@ -25,4 +25,4 @@ services:
       - key: TOP_N_CONTEXTS
         value: "10"
       - key: CORS_ORIGIN
-        sync: false
+        value: "https://contextflow-h8qu.onrender.com"
