@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ContextType {
+  IMMEDIATE
+  HISTORICAL
+  TEMPORAL
+  EXPERIENTIAL
+}
+
+model Context {
+  id             String      @id @default(uuid())
+  type           ContextType
+  content        String
+  metadata       Json        @default("{}")
+  relevanceScore Float       @default(0)
+  accessCount    Int         @default(0)
+  isStale        Boolean     @default(false)
+  entity         String?     // e.g. "Supplier XYZ", "Customer ABC"
+  category       String?     // quality | logistics | payment | relationship | usage | general
+  tags           String[]    @default([])
+  fileUrl        String?
+  fileName       String?
+  fileSize       Int?
+  fileMimeType   String?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+}
