@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: contextflow-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install && npm run build && npm run db:deploy
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: USE_GROQ
+        value: "true"
+      - key: GROQ_MODEL
+        value: "llama-3.1-8b-instant"
+      - key: USE_REDIS
+        value: "false"
+      - key: USE_OPENAI
+        value: "false"
+      - key: STALE_THRESHOLD_DAYS
+        value: "7"
+      - key: TOP_N_CONTEXTS
+        value: "10"
+      - key: CORS_ORIGIN
+        sync: false
