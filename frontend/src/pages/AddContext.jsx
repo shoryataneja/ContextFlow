@@ -53,7 +53,7 @@ export default function AddContext() {
           metadata: JSON.parse(form.metadata),
           relevanceScore: parseFloat(form.relevanceScore),
           entity: form.entity.trim() || null,
-          category: form.category || null,
+          ...(form.category && { category: form.category }),
           tags,
         },
         file
